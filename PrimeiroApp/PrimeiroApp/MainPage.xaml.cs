@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,26 @@ namespace PrimeiroApp
             try
             {
                 String dataDigitada = await DisplayPromptAsync("Info", "Digite a data de nascimento", "Ok") ;
+
+                DateTime dataConvertida;
+
+                //Converte data para Brasil new "CultureInfo("pt-BR"), DateTimeStyles.None"
+
+                bool converteu = DateTime.TryParse(dataDigitada, new CultureInfo("pt-BR"), DateTimeStyles.None, out  dataConvertida);
+
+                //if(!converteu)
+
+                if (converteu == false)
+                {
+                    throw new Exception("Está data não é valida");
+                }
+
+                else
+                {   //Retorna a um double com (int)
+
+                    int diasVividos = (int)DateTime.Now.Subtract(dataConvertida).TotalDays;
+                    await DisplayAlert("Info", $"Você já viveu {diasVividos}.", "Ok");
+                }
             }
             catch (Exception ex)
             {
