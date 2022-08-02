@@ -30,6 +30,9 @@
 
         <Button x:Name="btnInformarDataNascimento" Text="Informe a data de nascimento" Clicked="btnInformarDataNascimento_Clicked" />
 
+        <Label x:Name="lblDataNascimento" />
+        <Button x:Name="btnOpcoes" Text="Opções"  Clicked="btnOpcoes_Clicked"/>
+        
     </StackLayout>
 
 </ContentPage>

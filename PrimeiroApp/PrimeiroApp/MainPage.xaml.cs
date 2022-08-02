@@ -74,5 +74,18 @@ namespace PrimeiroApp
             }
         }
 
+        private async void btnOpcoes_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Erro", ex.Message + ex.InnerException, "Ok");
+
+            }
+
+        }
     }
 }
