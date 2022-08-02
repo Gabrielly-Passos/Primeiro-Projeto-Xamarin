@@ -40,7 +40,18 @@ namespace PrimeiroApp
             }
         }
 
-     
+        private async void btnInformarDataNascimento_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                String dataDigitada = await DisplayPromptAsync("Info", "Digite a data de nascimento", "Ok") ;
+            }
+            catch (Exception ex)
+            {
+
+               await DisplayAlert("Erro", ex.Message + ex.InnerException,  "Ok");
+            }
+        }
 
     }
 }

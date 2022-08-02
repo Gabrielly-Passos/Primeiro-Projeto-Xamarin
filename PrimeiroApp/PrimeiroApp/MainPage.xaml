@@ -21,11 +21,14 @@
         </Label>
 
             
-            <Button x:Name="btnCliqueAqui" Text="Clique Aqui" Clicked="btnCliqueAqui_Clicked"    />
+            <Button x:Name="btnCliqueAqui" Text="Clique Aqui" Clicked="btnCliqueAqui_Clicked"/>
 
         <Entry x:Name="txtNome" Placeholder=""/>
         <Button x:Name="btnVerificar"  Text="Verificar" Clicked="btnVerificar_Clicked" />
             <Button x:Name="btnLimpar" Text="Limpar" Clicked="btnLimpar_Clicked" />
+
+
+        <Button x:Name="btnInformarDataNascimento" Text="Informe a data de nascimento" Clicked="btnInformarDataNascimento_Clicked" />
 
     </StackLayout>
 
