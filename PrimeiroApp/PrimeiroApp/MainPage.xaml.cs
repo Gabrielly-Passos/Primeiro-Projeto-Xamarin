@@ -90,7 +90,43 @@ namespace PrimeiroApp
 
                     if (resposta == "Saber o dia da semana")
                     {
-                        string msg = $"Você nasceu no(a) {dtNascimento.DayOfWeek}";
+                        string diaSemana = String.Empty;
+                        switch (dtNascimento.DayOfWeek)
+                        {
+                            
+                            case DayOfWeek.Sunday:
+                                diaSemana = "Sexta";
+                                break;
+
+                            case DayOfWeek.Monday:
+                                diaSemana = "Segunda";
+                                break;
+
+                            case DayOfWeek.Tuesday:
+                                diaSemana = "Terça";
+                                break;
+
+                            case DayOfWeek.Wednesday:
+                                diaSemana = "Quarta";
+                                break;
+
+                            case DayOfWeek.Thursday:
+                                diaSemana = "Quinta";
+                                break;
+
+                            case DayOfWeek.Friday:
+                                diaSemana = "Sexta";
+                                break;
+
+                            case DayOfWeek.Saturday:
+                                diaSemana = "Sábado";
+                                break;
+
+                        
+                        }
+                          
+
+                        string msg = $"Você nasceu no(a) {diaSemana}";
                         await DisplayAlert("Info", msg, "Ok");
 
                     }
