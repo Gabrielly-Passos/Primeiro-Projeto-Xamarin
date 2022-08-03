@@ -30,7 +30,7 @@ namespace PrimeiroApp
             DisplayAlert("Mensagem", texto, "Ok");
         }
 
-        
+
 
         private async void btnLimpar_Clicked(object sender, EventArgs e)
         {
@@ -45,13 +45,13 @@ namespace PrimeiroApp
         {
             try
             {
-                String dataDigitada = await DisplayPromptAsync("Info", "Digite a data de nascimento", "Ok") ;
+                String dataDigitada = await DisplayPromptAsync("Info", "Digite a data de nascimento", "Ok");
 
                 DateTime dataConvertida;
 
                 //Converte data para Brasil new "CultureInfo("pt-BR"), DateTimeStyles.None"
 
-                bool converteu = DateTime.TryParse(dataDigitada, new CultureInfo("pt-BR"), DateTimeStyles.None, out  dataConvertida);
+                bool converteu = DateTime.TryParse(dataDigitada, new CultureInfo("pt-BR"), DateTimeStyles.None, out dataConvertida);
 
                 //if(!converteu)
 
@@ -62,7 +62,7 @@ namespace PrimeiroApp
 
                 else
                 {   //Retorna a um double com (int)
-
+                    lblDataNascimento.Text = String.Format("{0:dd/MM/yyyy}", dataConvertida);
                     int diasVividos = (int)DateTime.Now.Subtract(dataConvertida).TotalDays;
                     await DisplayAlert("Info", $"Você já viveu {diasVividos}.", "Ok");
                 }
@@ -70,14 +70,42 @@ namespace PrimeiroApp
             catch (Exception ex)
             {
 
-               await DisplayAlert("Erro", ex.Message + ex.InnerException,  "Ok");
+                await DisplayAlert("Erro", ex.Message + ex.InnerException, "Ok");
             }
         }
 
         private async void btnOpcoes_Clicked(object sender, EventArgs e)
         {
             try
-            {
+            {      //Se está digitando o que é necessário 
+
+                if (string.IsNullOrEmpty(lblDataNascimento.Text))
+                    throw new Exception("Informar a data de nascimento");
+                else
+                {
+                    DateTime dtNascimento = Convert.ToDateTime(lblDataNascimento.Text, new CultureInfo("pt-BR"));
+
+                    string resposta = await DisplayActionSheet("Pergunta", "Selecione uma Opcao", "Cancelar", "Saber o dia da semana", "Saber o dia do mês", "Saber o dia do ano");
+
+
+                    if (resposta == "Saber o dia da semana")
+                    {
+                        string msg = $"Você nasceu no(a) {dtNascimento.DayOfWeek}";
+                        await DisplayAlert("Info", msg, "Ok");
+
+                    }
+                    else if (resposta == "Saber o dia do mês")
+                    {
+                        string msg = $"Você nasceu no(a) {dtNascimento.Day}";
+                        await DisplayAlert("Info", msg, "Ok");
+
+                    }
+                    else if (resposta == "Saber o dia do ano")
+                    {
+                        string msg = $"Você nasceu no(a) {dtNascimento.DayOfYear}º no ano";
+                        await DisplayAlert("Info", msg, "Ok");
+                    }
+                }
 
             }
             catch (Exception ex)
